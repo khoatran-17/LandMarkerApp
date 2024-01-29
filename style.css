@@ -1,0 +1,492 @@
+:root {
+  --color-bg: rgb(37, 37, 37);
+  --color-neon-logo: #45c594;
+  --color-dark--1: #3f3a4d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: rgb(214, 222, 224);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  min-width: 360px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-light--2);
+  font-weight: 400;
+  line-height: 1.6;
+  height: 100vh;
+  width: 100%;
+  overscroll-behavior-y: none;
+  background-color: var(--color-bg);
+  display: flex;
+  position: relative;
+}
+
+/* SIDEBAR */
+.sidebar-menu {
+  position: absolute;
+  z-index: 1001;
+  top: 0;
+  right: 0;
+  background-color: var(--color-dark--1);
+  border-radius: 5px;
+  border: 1px solid var(--color-neon-logo);
+  margin: 5px;
+  padding: 5px;
+  display: none;
+}
+
+.sidebar {
+  flex-basis: 50rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  height: 100vh;
+  width: 300px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.02), 5%, rgba(0, 0, 0, 0.9));
+}
+
+.logo {
+  height: 7rem;
+  align-self: center;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  gap: 1rem;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.02), 10%, rgba(0, 0, 0, 0.8));
+  border-bottom-right-radius: 10px;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.logo h1 {
+  float: right;
+}
+
+.neon-name-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem 0 1rem;
+}
+
+.neon-name-box h1 {
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
+  text-shadow: 0 0 10px var(--color-neon-logo), 0 0 20px var(--color-neon-logo),
+    0 0 40px var(--color-neon-logo), 0 0 80px var(--color-neon-logo),
+    0 0 120px var(--color-neon-logo);
+}
+
+/* LOCATION  */
+.locations {
+  list-style: none;
+  height: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.locations::-webkit-scrollbar {
+  width: 0;
+}
+
+.location {
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  position: relative;
+  display: grid;
+  grid-template-areas: 'icon info';
+  grid-template-columns: 70px 2fr;
+  gap: 0.75rem 1rem;
+  overflow: hidden;
+}
+
+.location:hover {
+  background: var(--border-color);
+  box-shadow: 0 0 5px var(--border-color), 0 0 25px var(--border-color),
+    0 0 50px var(--border-color), 0 0 200px var(--border-color);
+
+  color: black;
+}
+
+.location span {
+  position: absolute;
+  display: block;
+}
+
+.location span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--border-color));
+  animation: top 1s linear infinite;
+}
+
+@keyframes top {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.location span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--border-color));
+  animation: right 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes right {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+.location span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(270deg, transparent, var(--border-color));
+  animation: bot 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes bot {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.location span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, var(--border-color));
+  animation: left 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes left {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+.location__icon {
+  grid-area: icon;
+  width: 70px;
+}
+
+.location__infos {
+  display: grid;
+  align-items: center;
+  font-size: 1rem;
+  width: 90%;
+}
+
+.location__infos h2 {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.location__infos h3 {
+  font-weight: 200;
+}
+
+.location__delete {
+  width: 3rem;
+
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  font-size: 2rem;
+  color: var(--color-light--2);
+  cursor: pointer;
+  margin: 0.5rem;
+  background: none;
+}
+
+.location__delete:hover {
+  color: var(--color-light--1);
+}
+
+.form {
+  background-color: var(--color-dark--1);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 15rem;
+  transition: all 0.5s, transform 1ms;
+}
+
+.form.hidden {
+  transform: translateY(-30rem);
+  height: 0;
+  padding: 0 2.25rem;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: center;
+}
+
+.form__row--hidden {
+  display: none;
+}
+
+.form__label {
+  flex: 0 0 30%;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.3rem 1.1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+  transition: all 0.2s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.copyright {
+  margin-top: auto;
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--color-light--2);
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.controls button,
+.form__btn,
+.deleteMsg button {
+  color: white;
+  position: relative;
+  display: inline-block;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 49%;
+  color: var(--color-neon-logo);
+  background: var(--color-neon-logo);
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid var(--color-neon-logo);
+  color: black;
+  font-weight: 600;
+}
+
+.controls button:hover,
+.form__btn:hover,
+.deleteMsg button:hover {
+  background-color: cyan;
+  color: black;
+  box-shadow: 0 0 5px var(--color-neon-logo), 0 0 25px var(--color-neon-logo),
+    0 0 40px var(--color-neon-logo), 0 0 80px var(--color-neon-logo),
+    0 0 120px var(--color-neon-logo);
+}
+
+.form__btn {
+  align-self: center;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* DELETE ALL MESSAGE */
+.deleteMsg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-dark--1);
+  opacity: 0.97;
+  z-index: 1000;
+}
+
+.deleteMsg h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.deleteMsg div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 90%;
+}
+
+.deleteMsg button {
+  width: 100%;
+  padding: 1rem;
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+/* MAP */
+#map {
+  flex: 1;
+  height: 100%;
+  background-color: var(--color-light--1);
+}
+
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  right: 2%;
+}
+
+.Home--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(255, 0, 0);
+  border-right: 5px solid rgb(255, 0, 0);
+}
+.Work--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(255, 196, 0);
+  border-right: 5px solid rgb(255, 196, 0);
+}
+.Food--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(33, 165, 0);
+  border-right: 5px solid rgb(33, 165, 0);
+}
+.Hotel--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(0, 255, 221);
+  border-right: 5px solid rgb(0, 255, 221);
+}
+.Store--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(0, 140, 255);
+  border-right: 5px solid rgb(0, 140, 255);
+}
+.Bank--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(162, 0, 255);
+  border-right: 5px solid rgb(162, 0, 255);
+}
+.Gym--popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid rgb(255, 123, 0);
+  border-right: 5px solid rgb(255, 123, 0);
+}
+
+.leaflet-right {
+  right: unset;
+}
+
+.leaflet-top {
+  top: 8%;
+}
+
+@media screen and (max-width: 660px) {
+  .sidebar-menu {
+    display: block;
+  }
+
+  .sidebar {
+    padding-top: 7rem;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .sidebar-menu img {
+    height: 3rem;
+  }
+
+  .sidebar {
+    padding-top: 5rem;
+  }
+
+  .logo {
+    height: 4rem;
+  }
+
+  .neon-name-box h1 {
+    font-size: 2rem;
+  }
+}
